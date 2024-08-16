@@ -2,8 +2,7 @@ import axios from "axios";
 import httpStatus from "http-status";
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import server from "../environment"
-
+import server from "../environment";
 
 
 export const AuthContext = createContext({});
@@ -59,7 +58,6 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-
     const getHistoryOfUser = async () => {
         try {
             let request = await client.get("/get_all_activity", {
@@ -85,12 +83,10 @@ export const AuthProvider = ({ children }) => {
             throw e;
         }
     }
-    
-
 
 
     const data = {
-        userData, setUserData, getHistoryOfUser, addToUserHistory, handleRegister, handleLogin
+        userData, setUserData, addToUserHistory, getHistoryOfUser, handleRegister, handleLogin
     }
 
     return (
