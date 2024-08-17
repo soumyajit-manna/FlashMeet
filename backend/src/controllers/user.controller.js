@@ -43,8 +43,8 @@ const register = async (req, res) => {
 
     try {
         const existingUser = await User.findOne({ username });
-    if (existingUser) {
-      return res.status(httpStatus.CONFLICT).json({ message: "Username already exists." });
+        if (existingUser) {
+            return res.status(httpStatus.FOUND).json({ message: "User already exists" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -96,8 +96,6 @@ const addToHistory = async (req, res) => {
         res.json({ message: `Something went wrong ${e}` })
     }
 }
-
-
 
 
 export { login, register, getUserHistory, addToHistory }

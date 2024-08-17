@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
-import withAuth from '../utils/withAuth';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react'
+import withAuth from '../utils/withAuth'
+import { useNavigate } from 'react-router-dom'
 import "../App.css";
 import { Button, IconButton, TextField } from '@mui/material';
 import RestoreIcon from '@mui/icons-material/Restore';
@@ -55,7 +55,6 @@ function HomeComponent() {
                 <div className="leftPanel">
                     <div>
                         <h2>Providing Quality Video Call Just Like Quality Education</h2>
-                        
 
                         <div style={{ display: 'flex', gap: "10px" }}>
 
