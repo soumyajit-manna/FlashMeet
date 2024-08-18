@@ -452,7 +452,7 @@ export default function VideoMeetComponent() {
 
             {askForUsername === true ?
 
-                <div>
+                <div className={styles.videoPreview}>
 
 
                     <h2>Enter into Lobby </h2>
