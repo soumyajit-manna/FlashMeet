@@ -403,22 +403,24 @@ export default function VideoMeetComponent() {
 
     let handleEndCall = () => {
         try {
-            let tracks = localVideoref.current.srcObject.getTracks()
+            let tracks = localVideoRef.current.srcObject.getTracks();
             tracks.forEach(track => track.stop())
-        } catch (e) { }
-        window.location.href = "/home"
+        } catch (e) {}
+
+        routeTo("/home")
     }
 
-    let openChat = () => {
-        setModal(true);
-        setNewMessages(0);
-    }
-    let closeChat = () => {
-        setModal(false);
-    }
-    let handleMessage = (e) => {
-        setMessage(e.target.value);
-    }
+
+    // let openChat = () => {
+    //     setModal(true);
+    //     setNewMessages(0);
+    // }
+    // let closeChat = () => {
+    //     setModal(false);
+    // }
+    // let handleMessage = (e) => {
+    //     setMessage(e.target.value);
+    // }
 
     const addMessage = (data, sender, socketIdSender) => {
         setMessages((prevMessages) => [
