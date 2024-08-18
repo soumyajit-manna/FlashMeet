@@ -455,7 +455,7 @@ export default function VideoMeetComponent() {
                 <div className={styles.videoPreview}>
 
 
-                    <h2>Enter into Lobby </h2>
+                    <h2>Connect to Meeting </h2>
                     <TextField id="outlined-basic" label="Username" value={username} onChange={e => setUsername(e.target.value)} variant="outlined" />
                     <Button variant="contained" onClick={connect}>Connect</Button>
 
