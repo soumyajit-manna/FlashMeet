@@ -12,6 +12,7 @@ import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import StopScreenShareIcon from '@mui/icons-material/StopScreenShare'
 import ChatIcon from '@mui/icons-material/Chat'
 import server from '../environment';
+import { useNavigate } from 'react-router-dom';
 
 
 const server_url = server;
@@ -71,11 +72,11 @@ export default function VideoMeetComponent() {
 
     })
 
-    let getDislayMedia = () => {
+    let getDisplayMedia = () => {
         if (screen) {
             if (navigator.mediaDevices.getDisplayMedia) {
                 navigator.mediaDevices.getDisplayMedia({ video: true, audio: true })
-                    .then(getDislayMediaSuccess)
+                    .then(getDisplayMediaSuccess)
                     .then((stream) => { })
                     .catch((e) => console.log(e))
             }
@@ -131,6 +132,7 @@ export default function VideoMeetComponent() {
 
 
     }, [video, audio])
+
     let getMedia = () => {
         setVideo(videoAvailable);
         setAudio(audioAvailable);
@@ -138,6 +140,7 @@ export default function VideoMeetComponent() {
 
     }
 
+    let routeTo = useNavigate();
 
 
 
@@ -209,7 +212,7 @@ export default function VideoMeetComponent() {
 
 
 
-    let getDislayMediaSuccess = (stream) => {
+    let getDisplayMediaSuccess = (stream) => {
         console.log("HERE")
         try {
             window.localStream.getTracks().forEach(track => track.stop())
@@ -388,13 +391,13 @@ export default function VideoMeetComponent() {
         // getUserMedia();
     }
     let handleAudio = () => {
-        setAudio(!audio)
+        setAudio(!audio);
         // getUserMedia();
     }
 
     useEffect(() => {
         if (screen !== undefined) {
-            getDislayMedia();
+            getDisplayMedia();
         }
     }, [screen])
     let handleScreen = () => {
@@ -411,16 +414,16 @@ export default function VideoMeetComponent() {
     }
 
 
-    // let openChat = () => {
-    //     setModal(true);
-    //     setNewMessages(0);
-    // }
-    // let closeChat = () => {
-    //     setModal(false);
-    // }
-    // let handleMessage = (e) => {
-    //     setMessage(e.target.value);
-    // }
+    let openChat = () => {
+        setModal(true);
+        setNewMessages(0);
+    }
+    let closeChat = () => {
+        setModal(false);
+    }
+    let handleMessage = (e) => {
+        setMessage(e.target.value);
+    }
 
     const addMessage = (data, sender, socketIdSender) => {
         setMessages((prevMessages) => [
@@ -503,33 +506,27 @@ export default function VideoMeetComponent() {
 
 
                     <div className={styles.buttonContainers}>
-                        <IconButton onClick={handleVideo} style={{color:"white"}}>
-                            {(video === true) ? <VideocamIcon/> : <VideocamOffIcon/>}
+                        <IconButton onClick={handleVideo} style={{ color: "white" }}>
+                            {(video === true) ? <VideocamIcon /> : <VideocamOffIcon />}
                         </IconButton>
-                        <IconButton onClick={handleEndCall} style={{color:"red"}}>
-                            <CallEndIcon/>
+                        <IconButton onClick={handleEndCall} style={{ color: "red" }}>
+                            <CallEndIcon  />
                         </IconButton>
-                        <IconButton onClick={handleAudio} style={{color:"white"}}>
-                            {(audio ===true) ? <MicIcon/> : <MicOffIcon/>}
+                        <IconButton onClick={handleAudio} style={{ color: "white" }}>
+                            {audio === true ? <MicIcon /> : <MicOffIcon />}
                         </IconButton>
 
                         {screenAvailable === true ?
-                        <IconButton onClick={handleScreen} style={{color:"white"}}>
-                            {screen === true ? <ScreenShareIcon/> : <StopScreenShareIcon/>}
-
-                        </IconButton>: <></>}
+                            <IconButton onClick={handleScreen} style={{ color: "white" }}>
+                                {screen === true ? <ScreenShareIcon /> : <StopScreenShareIcon />}
+                            </IconButton> : <></>}
 
                         <Badge badgeContent={newMessages} max={999} color="secondary">
-                            <IconButton onClick={handleChat} style={{color:"white"}}>
-                                <ChatIcon /> 
-                            </IconButton>
+                            <IconButton onClick={() => setModal(!showModal)} style={{ color: "white" }}>
+                                <ChatIcon />                        </IconButton>
                         </Badge>
-                        
-
-
 
                     </div>
-
 
                     <video className={styles.meetUserVideo} ref={localVideoRef} autoPlay muted></video>
 
