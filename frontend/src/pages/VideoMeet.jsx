@@ -410,9 +410,6 @@ export default function VideoMeetComponent() {
             tracks.forEach(track => track.stop())
         } catch (e) {}
 
-         // Emit a signal to the other person's socket to indicate that the user has left
-        socketRef.current.emit('user-left', socketIdRef.current);
-
         routeTo("/home")
     }
 
