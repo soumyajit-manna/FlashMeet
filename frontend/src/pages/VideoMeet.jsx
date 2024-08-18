@@ -503,25 +503,30 @@ export default function VideoMeetComponent() {
 
 
                     <div className={styles.buttonContainers}>
-                        <IconButton onClick={handleVideo} style={{ color: "white" }}>
-                            {(video === true) ? <VideocamIcon /> : <VideocamOffIcon />}
+                        <IconButton onClick={handleVideo} style={{color:"white"}}>
+                            {(video === true) ? <VideocamIcon/> : <VideocamOffIcon/>}
                         </IconButton>
-                        <IconButton onClick={handleEndCall} style={{ color: "red" }}>
-                            <CallEndIcon  />
+                        <IconButton onClick={handleEndCall} style={{color:"red"}}>
+                            <CallEndIcon/>
                         </IconButton>
-                        <IconButton onClick={handleAudio} style={{ color: "white" }}>
-                            {audio === true ? <MicIcon /> : <MicOffIcon />}
+                        <IconButton onClick={handleAudio} style={{color:"white"}}>
+                            {(audio ===true) ? <MicIcon/> : <MicOffIcon/>}
                         </IconButton>
 
                         {screenAvailable === true ?
-                            <IconButton onClick={handleScreen} style={{ color: "white" }}>
-                                {screen === true ? <ScreenShareIcon /> : <StopScreenShareIcon />}
-                            </IconButton> : <></>}
+                        <IconButton onClick={handleScreen} style={{color:"white"}}>
+                            {screen === true ? <ScreenShareIcon/> : <StopScreenShareIcon/>}
+
+                        </IconButton>: <></>}
 
                         <Badge badgeContent={newMessages} max={999} color="secondary">
-                            <IconButton onClick={() => setModal(!showModal)} style={{ color: "white" }}>
-                                <ChatIcon />                        </IconButton>
+                            <IconButton onClick={handleChat} style={{color:"white"}}>
+                                <ChatIcon /> 
+                            </IconButton>
                         </Badge>
+                        
+
+
 
                     </div>
 
